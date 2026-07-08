@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>行事曆｜工程監造工作系統</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .calendar-section { margin: 2rem 0; }
+    .calendar-table th { background: #2c5f2e; color: #fff; position:sticky; top:0; }
+    .calendar-table td { padding: 0.5rem 0.75rem; vertical-align: top; }
+    .event-tag { display:inline-block; padding:2px 8px; border-radius:12px; font-size:0.78rem; font-weight:600; margin-right:4px; white-space:nowrap; }
+    .tag-qc { background:#d4edda; color:#155724; }
+    .tag-progress { background:#cce5ff; color:#004085; }
+    .tag-inspect { background:#fff3cd; color:#856404; }
+    .tag-inspect-work { background:#ff8f00; color:#fff; border:2px solid #e65100; font-weight:700; padding:3px 10px; box-shadow:0 1px 3px rgba(230,81,0,0.25); }
+    .tag-schedule { background:#f8d7da; color:#721c24; }
+    .tag-selfcheck { background:#e2d9f3; color:#3d1f7c; }
+    .tag-mat-sample { background:#d1ecf1; color:#0c5460; }
+    .tag-mat-entry { background:#bee5eb; color:#0c5460; }
+    .tag-nonconform { background:#f5c6cb; color:#721c24; }
+    .tag-oversight { background:#ffe0b2; color:#5d4037; }
+    .tag-safety { background:#c8e6c9; color:#2e7d32; }
+    .tag-general { background:#e9ecef; color:#495057; }
+    .calendar-wrap { max-height:600px; overflow-y:auto; border:1px solid #d4e4d4; border-radius:6px; }
+    .filter-bar { display:flex; gap:0.5rem; flex-wrap:wrap; margin:0.5rem 0 1rem; font-size:0.85rem; }
+    .filter-bar .fchip { background:#f4f8f4; border:1px solid #d4e4d4; padding:4px 10px; border-radius:12px; }
+    .filter-bar .fchip strong { color:#2c5f2e; }
+    .calendar-table th.date-col { min-width:110px; white-space:nowrap; }
+    .calendar-table th.cal-status-col, .calendar-table td.cal-status-col { min-width:80px; white-space:nowrap; text-align:center; }
+    .calendar-table .tag { white-space:nowrap; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="badge">第六版 V6.4｜更新日期：2026/07/04</div>
+    <h1>工程監造工作系統</h1>
+    <p class="subtitle">八仙山國家森林遊樂區步道設施改善工程 — 監造工作統一入口</p>
+  </div>
+</header>
+<nav>
+  <div class="nav-inner"><a href="../index.html">← 回所有案件</a>
+    <a href="index.html">首頁</a>
+    <a href="calendar.html">行事曆</a>
+    <a href="workflow.html">工程概要及進度</a>
+    <a href="quality.html">材料品質管理</a>
+    <a href="construction-quality.html">施工品質管理</a>
+    <a href="safety.html">施工安全衛生</a>
+    <a href="downloads.html">施工照片／更新紀錄</a>
+  </div>
+</nav>
+<main>
+
+<h2 class="section-title">行事曆</h2>
+<p style="color:#555; margin-bottom:0.5rem;">依「行事曆」分頁彙整事件共 101 筆。</p>
+<div class="filter-bar">
+  <span class="fchip">材料抽驗 <strong>23</strong></span>
+  <span class="fchip">材料進場 <strong>23</strong></span>
+  <span class="fchip">施工抽查 <strong>17</strong></span>
+  <span class="fchip">自主檢查 <strong>15</strong></span>
+  <span class="fchip">三級品管 <strong>5</strong></span>
+  <span class="fchip">不符合事項 <strong>5</strong></span>
+  <span class="fchip">安全衛生 <strong>4</strong></span>
+  <span class="fchip">技師督導 <strong>3</strong></span>
+  <span class="fchip">主辦督導 <strong>3</strong></span>
+  <span class="fchip">工期 <strong>2</strong></span>
+  <span class="fchip">進度更新 <strong>1</strong></span>
+</div>
+<div class="calendar-section">
+<div class="calendar-wrap">
+<table class="calendar-table">
+  <thead>
+    <tr><th class="date-col">日期</th><th>事件類別</th><th>事件內容</th><th>位置</th><th class="cal-status-col">狀態</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>115/03/16</td><td><span class="event-tag tag-qc">三級品管</span></td><td>監造計畫提送</td><td>監造單位</td><td class="cal-status-col"><span class="tag ok">已合格</span></td></tr>
+    <tr><td>115/03/18</td><td><span class="event-tag tag-qc">三級品管</span></td><td>施工及品質計畫提送</td><td>監造單位</td><td class="cal-status-col"><span class="tag ok">已合格</span></td></tr>
+    <tr><td>115/03/19</td><td><span class="event-tag tag-qc">三級品管</span></td><td>監造計畫核定（中育字第1153101271號）</td><td>主辦機關</td><td class="cal-status-col"><span class="tag ok">已核定</span></td></tr>
+    <tr><td>115/03/19</td><td><span class="event-tag tag-qc">三級品管</span></td><td>品質計畫核定（中育字第1153101337號）</td><td>主辦機關</td><td class="cal-status-col"><span class="tag ok">已核定</span></td></tr>
+    <tr><td>115/03/19</td><td><span class="event-tag tag-qc">三級品管</span></td><td>施工計畫核定（中育字第1153101337號）</td><td>主辦機關</td><td class="cal-status-col"><span class="tag ok">已核定</span></td></tr>
+    <tr><td>115/03/23</td><td><span class="event-tag tag-schedule">工期</span></td><td>開工</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag warn">進行中</span></td></tr>
+    <tr><td>115/04/11</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>防水自主檢查</td><td>屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.二.2 屋頂防水層，聚胺酯防水膜，連工帶料抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/04/11</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.二.2 屋頂防水層，聚胺酯防水膜，連工帶料實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/04/15</td><td><span class="event-tag tag-nonconform">不符合事項</span></td><td>DF97-5-QA-1 檢驗</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已檢驗</span></td></tr>
+    <tr><td>115/04/15</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>防水自主檢查</td><td>屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/15</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>拆除自主檢查</td><td>拆除作業區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/15</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>屋頂防水工程施工抽查</td><td>禮堂屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/17</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>防水漆起泡缺失改善完成</td><td>禮堂屋頂</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/04/17</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>矮牆漆面不完整缺失改善完成</td><td>禮堂屋頂</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/04/20</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>屋頂防水層開裂缺失改善完成</td><td>屋頂B區</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/04/20</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>屋頂防水層厚度不足缺失改善完成</td><td>屋頂B區</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/04/20</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>防水漆塗抹不完全缺失改善完成</td><td>屋頂B區</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/04/20</td><td><span class="event-tag tag-oversight">技師督導</span></td><td>監造技師督導</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/20</td><td><span class="event-tag tag-safety">安全衛生</span></td><td>安全衛生</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/20</td><td><span class="event-tag tag-nonconform">不符合事項</span></td><td>DF97-5-QA-2 檢驗</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已檢驗</span></td></tr>
+    <tr><td>115/04/23</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>拆除自主檢查</td><td>拆除作業區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/26</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>防水自主檢查</td><td>屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/26</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>拆除自主檢查</td><td>拆除作業區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/26</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>拆除工程施工抽查</td><td>拆除作業區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/26</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>屋頂防水工程施工抽查</td><td>禮堂屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/04/28</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>工程告示牌位置錯誤缺失改善完成</td><td>工程告示牌</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/04/28</td><td><span class="event-tag tag-nonconform">不符合事項</span></td><td>DF97-5-QA-3 檢驗</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已檢驗</span></td></tr>
+    <tr><td>115/04/29</td><td><span class="event-tag tag-oversight">主辦督導</span></td><td>主辦督導</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>消防自主檢查</td><td>機電消防區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.1.1 產品，乾粉滅火器，10 型，ABC，蓄壓式實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.1 產品，火警警報設備，火警受信總機，智慧型(定址型)，200≦回路＜300實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.2 產品，火警警報設備，中繼器實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.3 產品，火警警報設備，火警發信機，定址式實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.4 產品，火警探測設備，偵煙式，定址式實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.6 電線及電纜，對絞隔離線，2/C，1.25mm2實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.7 電線及電纜，耐熱線，1.6mm，火警警報設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.8 管材，PVC 管材及配件，火警警報設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.2.9 金屬材料，五金另料，其他固定鐵件等五金，火警警報設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.3.1 產品，緊急廣播設備，揚聲器附匹配變壓器，(掛壁式，L 級)，額定功率3W實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.3.2 產品，緊急廣播設備，緊急廣播主機，10 回路以下，輸出功率 100W實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.3.3 電線及電纜，耐熱線，1.6mm，緊急廣播設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.3.4 管材，PVC 管材及配件，緊急廣播設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.3.5 金屬材料，五金另料，其他固定鐵件等五金，緊急廣播設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.4.1 產品，出口標示燈實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.4.2 產品，緊急照明燈實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.4.3 電線及電纜，IV線，2.0mm，標示照明設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.4.4 管材，PVC 管材及配件，標示照明設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/08</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.十.4.5 金屬材料，五金另料，其他固定鐵件等五金，標示照明設備實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>消防自主檢查</td><td>機電消防區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.1.1 產品，乾粉滅火器，10 型，ABC，蓄壓式抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.1 產品，火警警報設備，火警受信總機，智慧型(定址型)，200≦回路＜300抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.2 產品，火警警報設備，中繼器抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.3 產品，火警警報設備，火警發信機，定址式抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.4 產品，火警探測設備，偵煙式，定址式抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.6 電線及電纜，對絞隔離線，2/C，1.25mm2抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.7 電線及電纜，耐熱線，1.6mm，火警警報設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.8 管材，PVC 管材及配件，火警警報設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.2.9 金屬材料，五金另料，其他固定鐵件等五金，火警警報設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.3.1 產品，緊急廣播設備，揚聲器附匹配變壓器，(掛壁式，L 級)，額定功率3W抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.3.2 產品，緊急廣播設備，緊急廣播主機，10 回路以下，輸出功率 100W抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.3.3 電線及電纜，耐熱線，1.6mm，緊急廣播設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.3.4 管材，PVC 管材及配件，緊急廣播設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.3.5 金屬材料，五金另料，其他固定鐵件等五金，緊急廣播設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.4.1 產品，出口標示燈抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.4.2 產品，緊急照明燈抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.4.3 電線及電纜，IV線，2.0mm，標示照明設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.4.4 管材，PVC 管材及配件，標示照明設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/11</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.十.4.5 金屬材料，五金另料，其他固定鐵件等五金，標示照明設備抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/15</td><td><span class="event-tag tag-progress">進度更新</span></td><td>資料統計截止日，預定22.23%、實際22.45%，超前0.22%</td><td>全案</td><td class="cal-status-col"><span class="tag warn">統計</span></td></tr>
+    <tr><td>115/05/15</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>木作自主檢查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/15</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>消防自主檢查</td><td>機電消防區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/15</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>消防工程施工抽查</td><td>機電消防區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/20</td><td><span class="event-tag tag-nonconform">不符合事項</span></td><td>DF97-5-QA-4 檢驗</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已檢驗</span></td></tr>
+    <tr><td>115/05/20</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>木作自主檢查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/20</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>防水自主檢查</td><td>屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/20</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>木作展示櫃工程施工抽查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/21</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.五.6 不銹鋼欄杆，E，髮絲紋不銹鋼展燈架實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/05/22</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>屋頂山脊明顯磚縫缺失改善完成</td><td>屋頂A區</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/05/22</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>拆除廢棄物堆置缺失改善完成</td><td>禮堂門口外</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/05/22</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>屋頂防水工程施工抽查</td><td>禮堂屋頂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/22</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.五.6 不銹鋼欄杆，E，髮絲紋不銹鋼展燈架抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/05/29</td><td><span class="event-tag tag-oversight">技師督導</span></td><td>監造技師督導</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/05/29</td><td><span class="event-tag tag-safety">安全衛生</span></td><td>安全衛生</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/03</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>木作自主檢查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/04</td><td><span class="event-tag tag-oversight">主辦督導</span></td><td>主辦督導</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/09</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>木作自主檢查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/12</td><td><span class="event-tag tag-oversight">主辦督導</span></td><td>主辦督導</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/12</td><td><span class="event-tag tag-oversight">技師督導</span></td><td>監造技師督導</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/12</td><td><span class="event-tag tag-safety">安全衛生</span></td><td>安全衛生</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/15</td><td><span class="event-tag tag-selfcheck">自主檢查</span></td><td>木作自主檢查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/15</td><td><span class="event-tag tag-inspect-work">施工抽查</span></td><td>木作展示櫃工程施工抽查</td><td>木作區</td><td class="cal-status-col"><span class="tag ok">已執行</span></td></tr>
+    <tr><td>115/06/18</td><td><span class="event-tag tag-nonconform">不符合事項</span></td><td>DF97-5-QA-5 檢驗</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag ok">已檢驗</span></td></tr>
+    <tr><td>115/06/23</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>木屑堆積於木作櫃體配電箱缺失改善完成</td><td>木作櫃體配電箱槽</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/06/23</td><td><span class="event-tag tag-inspect">施工抽查</span></td><td>檯面撞傷導致缺角缺失改善完成</td><td>木作櫃體檯面</td><td class="cal-status-col"><span class="tag ok">已改善</span></td></tr>
+    <tr><td>115/06/24</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.三.1 油漆，水性水泥漆(乳膠漆)，一底二度，室內漏水處實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/06/25</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.三.1 油漆，水性水泥漆(乳膠漆)，一底二度，室內漏水處抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/06/25</td><td><span class="event-tag tag-mat-entry">材料進場</span></td><td>甲.壹.三.2 隔間及小室，矽酸鈣板隔間工程，單層雙面，隔板厚度9mm，耐燃一級，祈禱室實際進場</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已進場</span></td></tr>
+    <tr><td>115/06/26</td><td><span class="event-tag tag-mat-sample">材料抽驗</span></td><td>甲.壹.三.2 隔間及小室，矽酸鈣板隔間工程，單層雙面，隔板厚度9mm，耐燃一級，祈禱室抽樣</td><td>工地現場</td><td class="cal-status-col"><span class="tag ok">已抽樣</span></td></tr>
+    <tr><td>115/06/29</td><td><span class="event-tag tag-safety">安全衛生</span></td><td>安全衛生</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag warn">預定</span></td></tr>
+    <tr><td>115/09/18</td><td><span class="event-tag tag-schedule">工期</span></td><td>預定完工日期</td><td>東勢林業文化園區禮堂</td><td class="cal-status-col"><span class="tag warn">預定</span></td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <strong>工程監造工作系統</strong><br>
+    本網站為工程監造內部工作資料平台第六版，實際表單、規範與作業程序仍應依契約、核定計畫、主管機關規定及最新法規辦理。
+  </div>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

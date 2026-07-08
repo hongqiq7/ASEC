@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>施工安全衛生｜工程監造工作系統</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .safety-tag { display:inline-block; padding:4px 10px; border-radius:12px; font-size:0.8rem; font-weight:700; color:#fff; }
+    .tag-critical { background:#b72f32; }
+    .tag-high { background:#e07835; }
+    .tag-medium { background:#d4a62a; color:#253942; }
+    .risk-card { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+    .risk-card h4 { margin:0 0 0.5rem; color:#153f4a; font-size:1.05rem; display:flex; align-items:center; gap:0.5rem; }
+    .stop-box { background:#fff0ed; border:1px solid #f3b9ad; border-radius:6px; padding:0.75rem 1rem; color:#8d2e27; font-size:0.9rem; margin:1rem 0; }
+    .stop-box b { color:#8d2e27; }
+    .flow-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.75rem; margin:1rem 0; }
+    .flow-step { background:#eaf1ef; border-radius:6px; padding:0.75rem; text-align:center; position:relative; }
+    .flow-step .step-title { font-weight:700; color:#153f4a; margin-bottom:0.25rem; }
+    .flow-step .step-note { font-size:0.8rem; color:#63777d; }
+    .control-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin:1rem 0; }
+    .control-card { background:#fafbf9; border:1px solid #dce5e4; border-radius:6px; padding:0.75rem 1rem; }
+    .control-card .ctrl-title { font-weight:700; color:#153f4a; margin-bottom:0.5rem; font-size:0.95rem; }
+    .control-card ul { margin:0.25rem 0 0 1.25rem; padding:0; font-size:0.85rem; line-height:1.5; }
+    .gate-list { display:grid; gap:0.75rem; margin:1rem 0; }
+    .gate-row { display:grid; grid-template-columns:40px 1fr; gap:0.75rem; align-items:start; padding:0.75rem 1rem; background:#f2f5f3; border-radius:6px; }
+    .gate-badge { display:grid; place-items:center; width:36px; height:36px; border-radius:6px; background:#21a179; color:#fff; font-size:1.05rem; font-weight:700; }
+    .gate-content b { display:block; color:#153f4a; font-size:0.95rem; }
+    .gate-content span { display:block; margin-top:0.25rem; font-size:0.85rem; color:#526a71; line-height:1.5; }
+    .kpi-box { background:#153f4a; border-radius:6px; padding:1rem; color:#fff; margin:1rem 0; }
+    .kpi-box b { color:#ffc857; font-size:0.95rem; }
+    .kpi-box ol { margin:0.5rem 0 0 1.25rem; padding:0; font-size:0.85rem; line-height:1.6; }
+    .pin-hotspot { display:grid; grid-template-columns:36px 1fr; gap:0.75rem; align-items:start; padding:0.5rem 0.75rem; background:#fff; border:1px solid #d1dbdc; border-radius:6px; margin-bottom:0.5rem; }
+    .pin-marker { display:grid; place-items:center; width:32px; height:32px; border-radius:50%; background:#e85d3f; color:#fff; font-weight:700; }
+    .scope-note { background:#eef4f1; border-left:4px solid #21a179; padding:0.75rem 1rem; font-size:0.88rem; line-height:1.55; margin:0.75rem 0; }
+    .accent { color:#e85d3f; font-weight:700; }
+    .risk-table { width:100%; border-collapse:separate; border-spacing:0 6px; }
+    .risk-table th { background:#153f4a; color:#fff; padding:8px; font-size:0.85rem; text-align:left; }
+    .risk-table td { background:#f5f7f5; padding:10px; vertical-align:top; font-size:0.85rem; line-height:1.5; }
+    .risk-table td:first-child { border-radius:4px 0 0 4px; font-weight:700; }
+    .risk-table td:last-child { border-radius:0 4px 4px 0; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="badge">第六版 V6.4｜更新日期：2026/07/04</div>
+    <h1>工程監造工作系統</h1>
+    <p class="subtitle">東勢林業文化園區禮堂整修為遊客中心暨設施改善工程 — 監造工作統一入口</p>
+  </div>
+</header>
+<nav>
+  <div class="nav-inner"><a href="../index.html">← 回所有案件</a>
+    <a href="index.html">首頁</a>
+    <a href="calendar.html">行事曆</a>
+<a href="workflow.html">工程概要及進度</a>
+<a href="quality.html">材料品質管理</a>
+<a href="construction-quality.html">施工品質管理</a>
+<a href="safety.html">施工安全衛生</a>
+<a href="downloads.html">施工照片／更新紀錄</a>
+  </div>
+</nav>
+<main>
+
+<h2 class="section-title">施工安全衛生</h2>
+<p style="color:#555;">依「職安衛施工風險評估報告」（顧問初評日期：2026.07.03）；適用範圍：既有建築室內展示／裝修工程；圖面檢視：78 張 A1（建築、展櫃、機電、展示內容）；辨識 <span class="accent">6 項優先管控風險</span>，適用階段：設計圖說階段／施工前確認。</p>
+
+<!-- 一、圖面風險熱點 -->
+<h3 class="section-title" style="font-size:1.15rem;">一、圖面風險熱點（6 項優先管控風險位置）</h3>
+<div class="pin-hotspot"><div class="pin-marker">1</div><div><b>中央大型造型／展櫃</b>：傾倒、夾壓</div></div>
+<div class="pin-hotspot"><div class="pin-marker">2</div><div><b>燈具、標示、牆面</b>：高處墜落／飛落</div></div>
+<div class="pin-hotspot"><div class="pin-marker">3</div><div><b>木作玻璃密集</b>：割傷、粉塵、VOC</div></div>
+<div class="pin-hotspot"><div class="pin-marker">4</div><div><b>入口與樓梯</b>：搬運碰撞、動線衝突</div></div>
+<div class="pin-hotspot"><div class="pin-marker">5</div><div><b>外牆／招牌</b>：高處、感電、第三人</div></div>
+<div class="pin-hotspot"><div class="pin-marker">6</div><div><b>多工種交叉</b>：臨電、動火、火災</div></div>
+
+<div class="scope-note"><b>判讀依據：</b>A2 平面、A3 立剖面、A11 展櫃／造型詳圖、F 電氣與 B 展示圖。圖面顯示單層既有空間，但天花燈具、上牆圖像及外牆施作仍構成高處作業；大型固定式展櫃與玻璃構件須納入吊搬、臨時支撐與錨定驗證。</div>
+
+<!-- 二、風險排序 -->
+<h3 class="section-title" style="font-size:1.15rem;">二、風險排序（施工前殘餘風險須降至可接受）</h3>
+<table class="risk-table">
+  <thead>
+    <tr>
+      <th style="width:19%">工項／危害</th>
+      <th style="width:23%">可能情境</th>
+      <th style="width:10%">初始值</th>
+      <th>必要控制（依消除→工程→管理→PPE）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>高處與物體飛落</td>
+      <td>燈具、吊掛標示、外牆圖像；梯具／移動架不穩</td>
+      <td><span class="safety-tag tag-critical">20</span></td>
+      <td>優先地面預組；合格工作臺／移動式施工架、腳輪鎖定、滿舖踏板與護欄；下方硬隔離，工具防墜。2 m 以上另設墜落防護。</td>
+    </tr>
+    <tr>
+      <td>大型展櫃／玻璃搬裝</td>
+      <td>狹窄入口轉運、構件傾倒、手指夾壓、玻璃破裂</td>
+      <td><span class="safety-tag tag-critical">16</span></td>
+      <td>搬運路徑與地坪承載先確認；專用台車／吸盤、指揮手、禁入旋轉區；臨時支撐後再卸吊具，錨栓拉拔／扭矩紀錄。</td>
+    </tr>
+    <tr>
+      <td>臨時用電／試運轉</td>
+      <td>鑽切、照明配線、既有線路誤送電或延長線破損</td>
+      <td><span class="safety-tag tag-high">15</span></td>
+      <td>盤前停電辨識、LOTO；臨電盤設高敏感高速漏電斷路器、接地與每日測試；線路架高／防壓，電氣作業限合格人員。</td>
+    </tr>
+    <tr>
+      <td>動火、火花與火災</td>
+      <td>焊切火花遇木作、包材、塗料／黏著劑；消防系統暫停</td>
+      <td><span class="safety-tag tag-high">15</span></td>
+      <td>動火許可、移除／遮蔽可燃物、滅火器與監火人；完工後至少持續巡查；消防停用須分區、掛牌及復歸確認。</td>
+    </tr>
+    <tr>
+      <td>粉塵、噪音與 VOC</td>
+      <td>拆除、鑽孔、研磨、噴塗／黏著於室內累積暴露</td>
+      <td><span class="safety-tag tag-high">12</span></td>
+      <td>低逸散材料與場外加工；負壓隔間、集塵與局排；SDS／化學品標示、禁火與密閉儲存；依評估配戴呼吸／聽力防護。</td>
+    </tr>
+    <tr>
+      <td>施工界面／緊急疏散</td>
+      <td>多工種交叉、材料占道，若場館局部營運恐波及第三人</td>
+      <td><span class="safety-tag tag-high">12</span></td>
+      <td>實體圍隔、單向人車／搬運動線；逃生出口與消防設備全時暢通；每日協議會議、分區交付及進場人員／機具管制。</td>
+    </tr>
+  </tbody>
+</table>
+<div class="scope-note" style="font-size:0.82rem;">風險值＝可能性 L（1–5）×嚴重度 S（1–5）；紅 ≥16、橙 10–15。實際分數應由施工團隊依工法、人數、工期與現勘重評。</div>
+
+<div class="stop-box"><b>立即停工條件：</b>護欄／工作臺未完成仍高處作業；展櫃未臨撐即卸吊具；臨電無漏電保護或帶電裸露；無動火許可／監火；逃生通道被封阻；非施工人員進入吊搬或飛落警戒區。</div>
+
+<!-- 三、管控流程 -->
+<h3 class="section-title" style="font-size:1.15rem;">三、現場閉環管控流程</h3>
+<p style="color:#555; font-size:0.9rem;">把圖面風險轉為「許可—隔離—查驗—紀錄—復歸」的現場閉環。</p>
+<div class="flow-steps">
+  <div class="flow-step"><div class="step-title">① 現勘／套圖</div><div class="step-note">既有管線、地坪、出口</div></div>
+  <div class="flow-step"><div class="step-title">② JSA＋施工計畫</div><div class="step-note">工序、機具、隔離</div></div>
+  <div class="flow-step"><div class="step-title">③ 作業許可</div><div class="step-note">高處／動火／停送電／吊搬</div></div>
+  <div class="flow-step"><div class="step-title">④ 現場查驗</div><div class="step-note">班前、變更、收工</div></div>
+  <div class="flow-step"><div class="step-title">⑤ 復歸結案</div><div class="step-note">消防、電氣、錨定、清場</div></div>
+</div>
+
+<!-- 四、工程與管理措施 -->
+<h3 class="section-title" style="font-size:1.15rem;">四、工程與管理措施</h3>
+<div class="control-grid">
+  <div class="control-card">
+    <div class="ctrl-title">🏗 高處／飛落</div>
+    <ul>
+      <li>梯具僅供短時輕作業；雙手施力改用工作臺。</li>
+      <li>移動架完成組配自檢、載重標示、腳輪鎖定；架上有人不得移動。</li>
+      <li>下方設硬式警戒；工具、零件及廢料防墜。</li>
+    </ul>
+  </div>
+  <div class="control-card">
+    <div class="ctrl-title">📦 吊搬／展櫃</div>
+    <ul>
+      <li>依重量、重心、外形編吊搬計畫；核對機具額定荷重。</li>
+      <li>一名指揮、統一手勢；人員不得站於吊物下或夾點。</li>
+      <li>錨定完成、垂直度與穩定確認後才撤臨撐。</li>
+    </ul>
+  </div>
+  <div class="control-card">
+    <div class="ctrl-title">⚡ 臨電／LOTO</div>
+    <ul>
+      <li>回路一覽、盤箱上鎖、接地與漏電測試紀錄。</li>
+      <li>鑽孔前探測暗管；既有回路停電、驗電、上鎖掛牌。</li>
+      <li>延長線不得串接過載或穿越門口／積水。</li>
+    </ul>
+  </div>
+  <div class="control-card">
+    <div class="ctrl-title">🔥 動火／化學品</div>
+    <ul>
+      <li>每日、每區、每工項核發許可；防火毯與監火。</li>
+      <li>黏著劑／塗料採 SDS 管理、局排、限量領用。</li>
+      <li>包材當日清運；熱作與塗裝排程錯開。</li>
+    </ul>
+  </div>
+  <div class="control-card">
+    <div class="ctrl-title">🚧 第三人／動線</div>
+    <ul>
+      <li>施工區實體圍隔；入口公告、夜間反光警示。</li>
+      <li>材料區、加工區、廢棄物區定置；逃生寬度不縮減。</li>
+      <li>若場館營運，採閉館施工或時段／樓區完全分流。</li>
+    </ul>
+  </div>
+  <div class="control-card">
+    <div class="ctrl-title">🧹 健康／整理整頓</div>
+    <ul>
+      <li>切割集塵、每日 HEPA 清潔，禁止乾掃。</li>
+      <li>噪音工序集中排程；輪替與暴露時間管理。</li>
+      <li>PPE 依危害選用並做密合／功能檢查。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 五、教育訓練 -->
+<h3 class="section-title" style="font-size:1.15rem;">五、教育訓練改善</h3>
+<table>
+  <thead>
+    <tr><th style="width:22%">對象／時點</th><th>必要內容與驗證</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>全員進場前</b></td><td>一般安全衛生教育＋本案危害告知；施工區、逃生、通報、PPE。<span class="accent">口試＋動線實走</span>，未通過不得領證。</td></tr>
+    <tr><td><b>每日班前 10 分</b></td><td>當日 JSA、交叉作業、停工條件、天候／場況變更。每人簽名，照片留存。</td></tr>
+    <tr><td><b>高處／施工架</b></td><td>正確上下、腳輪鎖定、護欄／踏板查驗、工具防墜、安全帶掛點；組配由合格作業主管監督（適用時）。</td></tr>
+    <tr><td><b>吊搬／玻璃</b></td><td>重量重心、指揮信號、吸盤與吊具點檢、夾點辨識、玻璃破裂應變。以<span class="accent">實作演練</span>驗證。</td></tr>
+    <tr><td><b>電氣／動火</b></td><td>LOTO、驗電、漏電斷路器測試；動火許可、監火、滅火器操作。資格與證照造冊。</td></tr>
+    <tr><td><b>主管與承攬商</b></td><td>共同作業協議、變更管理、巡檢缺失閉環；每週檢討前 3 大缺失及重複缺失。</td></tr>
+    <tr><td><b>緊急應變</b></td><td>火災、感電、墜落、玻璃割傷情境；急救箱、AED、119 通報與救護車接應點演練。</td></tr>
+  </tbody>
+</table>
+<div class="scope-note"><b>改善重點：</b>避免「簽名即完成」。採示範→學員操作→提問→紀錄四步驟；外籍／識字困難人員使用母語、圖卡與現場指認。新進、轉換工項、工法或場況變更均須補訓。</div>
+
+<!-- 六、查核關卡 -->
+<h3 class="section-title" style="font-size:1.15rem;">六、查核關卡與成效（責任到人、照片可追溯）</h3>
+<div class="gate-list">
+  <div class="gate-row"><div class="gate-badge">A</div><div class="gate-content"><b>開工前／專案經理＋職安</b><span>現勘套圖、承攬危害告知、JSA、緊急計畫、證照與保險造冊。</span></div></div>
+  <div class="gate-row"><div class="gate-badge">B</div><div class="gate-content"><b>每日放行／工地主任</b><span>臨電、圍隔、通道、架臺、吊具、消防；班前會與許可證齊備。</span></div></div>
+  <div class="gate-row"><div class="gate-badge">C</div><div class="gate-content"><b>隱蔽前／監造＋專業廠商</b><span>錨栓、吊點、配線、接地、阻燃／防火封堵拍照與試驗紀錄。</span></div></div>
+  <div class="gate-row"><div class="gate-badge">D</div><div class="gate-content"><b>變更時／原核准者</b><span>工法、材料、重量、動線或共同作業變更：停工重作 JSA 再放行。</span></div></div>
+  <div class="gate-row"><div class="gate-badge">E</div><div class="gate-content"><b>完工復歸／業主＋承商</b><span>絕緣／漏電、照明、展櫃穩定、尖角玻璃、消防與逃生功能驗收。</span></div></div>
+</div>
+
+<!-- 七、30 天追蹤指標 -->
+<div class="kpi-box">
+  <b>30 天追蹤指標</b>
+  <ol>
+    <li>高風險許可覆蓋率 100%</li>
+    <li>重大缺失當班結案 100%</li>
+    <li>班前會／工具點檢達成率 ≥95%</li>
+    <li>重複缺失率 &lt;5%</li>
+    <li>虛驚事件主動通報與 48 小時改善閉環</li>
+  </ol>
+</div>
+
+<!-- 八、法規基線 -->
+<div class="stop-box"><b>法規基線：</b>職安法承攬／共同作業；職業安全衛生設施規則第 224–225、243、276、284 條；營造安全衛生設施標準第 45、48、59 條；教育訓練規則第 10、17 條。應以施工當日有效條文及主管機關解釋為準。</div>
+
+<div class="notice" style="margin-top:1.5rem; font-size:0.85rem;">本頁內容依「職安衛施工風險評估報告（顧問初評 2026.07.03）」整理。原報告為圖說階段初評，不能取代現場勘查、結構／吊點計算、施工計畫、JSA、法定作業主管與專業簽證。圖面未見之拆除範圍、構件重量、營運狀態及既有管線須開工前補確認。</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <strong>工程監造工作系統</strong><br>
+    本網站為工程監造內部工作資料平台第六版，實際表單、規範與作業程序仍應依契約、核定計畫、主管機關規定及最新法規辦理。
+  </div>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

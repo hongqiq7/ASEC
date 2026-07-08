@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>施工照片／更新紀錄｜工程監造工作系統</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .photo-section { margin: 1rem 0 2rem; }
+    .photo-embed-wrap { position: relative; width: 100%; margin-top: 0.75rem; border: 1px solid #d4e4d4; border-radius: 6px; overflow: hidden; background: #f4f8f4; min-height: 200px; }
+    .photo-embed-wrap iframe { width: 100%; height: 600px; border: 0; display: block; }
+    .photo-fallback { margin-top: 0.5rem; font-size: 0.9rem; color: #555; }
+    .photo-fallback a { color: #2c5f2e; font-weight: 600; }
+    @media (max-width: 640px) {
+      .photo-embed-wrap iframe { height: 500px; }
+    }
+    @keyframes photo-spin {
+      to { transform: rotate(360deg); }
+    }
+    .photo-spinner {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 4px solid #e2ece9;
+      border-radius: 50%;
+      border-top-color: #2c5f2e;
+      animation: photo-spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+  </style>
+
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="badge">第六版 V6.4｜更新日期：2026/07/04</div>
+    <h1>工程監造工作系統</h1>
+    <p class="subtitle">東勢林業文化園區禮堂整修為遊客中心暨設施改善工程 — 監造工作統一入口</p>
+  </div>
+</header>
+<nav>
+  <div class="nav-inner"><a href="../index.html">← 回所有案件</a>
+    <a href="index.html">首頁</a>
+    <a href="calendar.html">行事曆</a>
+    <a href="workflow.html">工程概要及進度</a>
+    <a href="quality.html">材料品質管理</a>
+    <a href="construction-quality.html">施工品質管理</a>
+    <a href="safety.html">施工安全衛生</a>
+    <a href="downloads.html">施工照片／更新紀錄</a>
+  </div>
+</nav>
+<main>
+
+
+<h2 class="section-title">施工照片</h2>
+<div class="photo-section">
+  <p style="color:#555; margin-bottom:0.5rem;">施工照片依施工日期與工項分類儲存於 Google 雲端硬碟，共 12 個資料夾（期間：115/4/11 ~ 115/6/23）。以下嵌入雲端硬碟資料夾預覽，Google 系統自動產生縮圖。</p>
+  <div class="photo-embed-wrap">
+    <!-- 載入中動畫預留區 -->
+    <div id="photo-loading" style="text-align: center; padding: 5rem 1rem; color: #607d8b; font-weight: 600;">
+      <div class="photo-spinner"></div>
+      <div>正在載入施工照片雲端預覽...</div>
+    </div>
+    <iframe id="photo-iframe" src="about:blank" style="display: none;" allowfullscreen loading="lazy" title="施工照片 Google 雲端硬碟資料夾預覽"></iframe>
+  </div>
+  <p class="photo-fallback" id="photo-link-wrap" style="display: none;">若上方預覽無法顯示，請直接開啟：<a id="photo-link" href="#" target="_blank" rel="noopener">施工照片 Google 雲端硬碟資料夾 ↗</a></p>
+</div>
+
+<h2 class="section-title">下載專區</h2>
+<div class="search-box"><input id="tableSearch" placeholder="輸入關鍵字搜尋檔案名稱、版本或類別"></div>
+<table>
+  <thead>
+    <tr><th>類別</th><th>檔案名稱</th><th>版本</th><th>修訂日期</th><th>說明</th></tr>
+  </thead>
+  <tbody>
+    <tr data-search-row><td>流程</td><td>工程概要（監造工作流程圖）</td><td>V5.0</td><td>2026/07/02</td><td>更新進度、施工概況及累計進度檢核表（含6月月底）。</td></tr>
+    <tr data-search-row><td>表單</td><td>拆除作業工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>表單</td><td>屋頂防水工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>表單</td><td>矽酸鈣板隔間牆工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>表單</td><td>水泥漆塗裝工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>表單</td><td>木作展示櫃工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>表單</td><td>機電消防工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>表單</td><td>展示系統工程查驗表</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>品質</td><td>材料送審管制總表</td><td>V5.0</td><td>2026/07/02</td><td>已完成審查並轉機關核定共38項（V4為36項）。</td></tr>
+    <tr data-search-row><td>品質</td><td>材料設備抽驗管制總表</td><td>V5.0</td><td>2026/07/02</td><td>新增分頁；已完成抽樣及檢驗合格23項。</td></tr>
+    <tr data-search-row><td>施工品質</td><td>不合格改善紀錄表（施工抽查）</td><td>V5.4</td><td>2026/07/02</td><td>由「品質管理」移至新分頁「施工品質管理」。</td></tr>
+    <tr data-search-row><td>品質</td><td>不合格改善紀錄表</td><td>V5.0</td><td>2026/07/02</td><td>新增2筆（木作櫃體）；共10筆全數已改善完成。</td></tr>
+    <tr data-search-row><td>範本</td><td>監造日報範本</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>範本</td><td>施工缺失通知單</td><td>V0.1</td><td>2026/07/02</td><td>預留項目，待上傳正式檔案。</td></tr>
+    <tr data-search-row><td>施工抽查</td><td>假設及拆除工程抽查紀錄表</td><td>V1.0</td><td>2026/07/03</td><td>編號 DF97-5-SC-A-1（1 份）。</td></tr>
+    <tr data-search-row><td>施工抽查</td><td>屋頂防水工程抽查紀錄表</td><td>V1.0</td><td>2026/07/03</td><td>編號 DF97-5-SC-B-1 至 B-3（3 份合集）。</td></tr>
+    <tr data-search-row><td>施工抽查</td><td>機電消防工程抽查紀錄表</td><td>V1.0</td><td>2026/07/03</td><td>編號 DF97-5-SC-F-1（1 份）。</td></tr>
+    <tr data-search-row><td>施工抽查</td><td>木作展示櫃工程抽查紀錄表</td><td>V1.0</td><td>2026/07/03</td><td>編號 DF97-5-SC-E-1 至 E-2（2 份合集）。</td></tr>
+      </tbody>
+</table>
+
+<h2 class="section-title">更新紀錄</h2>
+<table>
+  <thead>
+    <tr><th>日期</th><th>版本</th><th>修訂項目</th><th>修訂說明</th><th>修訂人</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2026/07/04</td><td>V6.4</td><td>分頁更名</td><td>將分頁名稱「工程概要」改為「工程概要及進度」；同步更新全部 7 個頁面之導覽列、首頁快速連結、workflow.html 之 title 與 h2 主標題。檔名 workflow.html 維持不變；下載專區「工程概要（監造工作流程圖）」檔案名稱、首頁「工程概要事項紀錄」章節標題及所有歷史 changelog 條目均維持原文。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/03</td><td>V6.3</td><td>新增行事曆分頁</td><td>（1）新增獨立「行事曆」分頁（calendar.html），置於「首頁」與「工程概要」之間。（2）將首頁原「行事曆」章節整段搬移至新分頁，含類別統計條（11 類）與可捲動表格（101 筆事件）。（3）行事曆相關 CSS（.calendar-*、.event-tag、.tag-*、.filter-bar 等）一併搬移至 calendar.html。（4）全部 7 個頁面之導覽列同步加入「行事曆」連結。（5）首頁其餘章節（系統簡介、最新公告、工程進度摘要、主要工項完成率、更新資訊）維持不動。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/03</td><td>V6.2</td><td>分頁縮減</td><td>（1）刪除「工程文件範本」分頁（templates.html）；（2）刪除「常見問題 FAQ」分頁（faq.html）；（3）全部剩餘 6 個頁面之導覽列同步移除相關連結；（4）首頁「系統簡介」段落文字調整（移除「工程文件範本、FAQ」用詞）；（5）下載專區「範本」類別 2 筆下載項目維持不變（比照 V5.8「監造查驗表單」分頁移除時之處理原則）。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/03</td><td>V6.1</td><td>施工安全衛生改版</td><td>「施工安全衛生」分頁全部內容重寫，內容取自使用者上傳之「職安衛施工風險評估報告」（顧問初評 2026.07.03）。新版含：（1）圖面風險熱點 6 項；（2）風險排序表 6 項含分數與控制措施；（3）立即停工條件；（4）現場閉環管控流程 5 步驟；（5）工程與管理措施 6 大類；（6）教育訓練矩陣 7 對象；（7）查核關卡 A~E；（8）30 天追蹤指標；（9）法規基線。原檔為 A4 橫向列印版且含無法取得的平面圖圖檔，本次以網站統一樣式重寫，圖面 6 個風險 pin 改為文字說明。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/03</td><td>V6.0</td><td>施工照片整合</td><td>（1）分頁名稱由「下載專區／更新紀錄」改為「施工照片／更新紀錄」；檔名維持 downloads.html。（2）分頁最上方新增「施工照片」章節，以 iframe 嵌入 Google 雲端硬碟父資料夾（ID: 1NMBA2gqfhrCs-UnJwIyfyfu7WU0T1zWn），Google 系統自動顯示 12 個子資料夾之縮圖預覽（格狀模式）。（3）加入 fallback 連結，若 iframe 無法載入可直接開啟雲端硬碟。（4）下載專區區塊之「施工照片」類別 4 筆預留項目移除，其餘下載類別（流程、表單、品質、範本、施工抽查）維持不動。（5）加入響應式樣式，手機端 iframe 高度調整為 500px。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/03</td><td>V5.9</td><td>施工抽查紀錄表匯入</td><td>（1）「施工品質管理」分頁新增「二、施工抽查紀錄表」章節，位於「施工抽查工項一覽」之後、「不合格改善紀錄」之前；含 7 筆紀錄摘要表格與 PDF 下載連結。（2）打包 4 份 PDF 檔至 assets/pdf/。（3）原「二、不合格改善紀錄」順延為「三、不合格改善紀錄」。（4）不合格改善紀錄表「位置」、「缺失」欄加入 white-space:nowrap 與 min-width:140px，避免文字換行為多段。（5）版本 V5.8→V5.9，日期 07/02→07/03。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.8</td><td>分頁重組</td><td>（1）將原「監造查驗表單」分頁之「施工抽查工項一覽」章節搬移至「施工品質管理」分頁，作為新的「一、施工抽查工項一覽」，位於「不合格改善紀錄」上方；（2）原「不合格改善紀錄（施工抽查不符合事項）」章節編號自「一、」順延為「二、」；（3）刪除「監造查驗表單」分頁（inspection-forms.html），並移除全部頁面導覽列與首頁快速連結中的相關項目；（4）「監造查驗表單」原第二節「不符合事項追蹤管制」隨分頁一併移除；該表 10 筆資料已完整涵蓋於「施工品質管理\二、不合格改善紀錄」之擴充版表格。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.7</td><td>不合格改善紀錄日期對齊</td><td>依使用者指示（選項 B，套用全部 10 筆），將「施工品質管理\一、不合格改善紀錄」表格中「限定完成改善日期、改善複檢日期、結案日期、缺失改善日期」四欄一律改為與該項次之「檢驗日期」相同。項次 6–10 原本三欄為「—」者亦一併填入對應日期。表格下方說明文字同步調整。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.6</td><td>不合格改善紀錄檢驗／改善日期修正</td><td>依使用者指示修正「施工品質管理\一、不合格改善紀錄（施工抽查不符合事項）」表格之檢驗日期與缺失改善日期：項次1、2 檢驗4/15、改善4/17；項次3–5 檢驗4/20、改善4/20；項次6 檢驗4/28、改善4/28；項次7、8 檢驗5/22、改善5/22；項次9、10 檢驗6/23、改善6/23。項次1–5 之限定完成改善、改善複檢、結案日期維持既有值；項次6–10 上述三欄仍以「—」表示。同步調整表格下方說明文字。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.5</td><td>不合格改善紀錄補齊、行事曆調整</td><td>（1）依上傳「不符合事項追蹤管制總表」圖片重寫「施工品質管理」表格：新增「缺失改善日期」欄與各筆「說明」欄，共 10 筆完整資料；引言文字調整為「共計10筆」（原 V5.4 引言8+2 之表述與10筆內容不符，已一併調整）。（2）首頁行事曆表頭「日期（民國）」改為「日期」。（3）首頁行事曆狀態欄新增 cal-status-col 樣式（min-width:80px + white-space:nowrap），使「已改善／已合格／已核定」等文字均一列顯示不換行。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.4</td><td>分頁重組</td><td>（1）將原「品質管理」分頁更名為「材料品質管理」；（2）新增「施工品質管理」分頁，位於「材料品質管理」之後；（3）將原分頁章節「三、不合格改善紀錄（施工抽查不符合事項）」整段移至新分頁作為「一、不合格改善紀錄（施工抽查不符合事項）」；（4）加寬狀態欄（min-width:90px），並在 .tag-improved 加入 white-space:nowrap，使「已改善」文字一列顯示不換行。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.3</td><td>不合格改善紀錄修正</td><td>品質管理頁「不符合事項追蹤管制總表」第4項（屋頂防水層厚度不足）之檢驗日期由 115/5/20 修正為 115/5/22（依上傳「不符合事項追蹤管制總表」圖片）。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.2</td><td>行事曆修正</td><td>行事曆將「115/5/20 屋頂防水工程施工抽查」修正為「115/5/22 屋頂防水工程施工抽查」並重新排序至5/22事件群組。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.1</td><td>行事曆修正</td><td>（1）行事曆將「115/4/20 屋頂防水工程施工抽查」修正為「115/5/20 屋頂防水工程施工抽查」並重新排序至5/20事件群組；（2）新增 tag-inspect-work 樣式，將各項「工程施工抽查」（屋頂防水／拆除／消防／木作展示櫃）之「施工抽查」標籤加深為橘底白字加邊框，與同類別的「缺失改善完成」事件視覺區隔。</td><td>網站管理員</td></tr>
+    <tr><td>2026/07/02</td><td>V5.0</td><td>更新網站第五版</td><td>依6月30日督導報告同步更新：（1）工程概要：預定49.33%／實際51.58%、超前2.25百分點、累計工期100天、預定支出8,553.822千元、實際支出6,299.531千元、累計進度檢核表新增6月月底；（2）施工概況：壹.一、壹.二、壹.三、壹.五、壹.六、壹.十累計完成數量更新，整體完成率提升至59.98%；（3）材料送審：新增2項審查完成（項次2、3、4、5、6、11、32、33補齊審查日期與歸檔編號），累計38項已核定；（4）品質管理新增「材料設備抽驗管制總表」章節，涵蓋54項材料之實際進場、抽樣及檢驗結果，已完成23項；（5）施工抽查：抽查工項次數更新（拆除、屋頂防水、木作、機電消防），不符合事項新增木作櫃體檯面缺角、配電箱槽木屑堆積2筆；（6）行事曆：由17筆擴充至101筆，補齊自主檢查、材料進場、材料抽驗、督導紀錄、不符合事項等事件。</td><td>網站管理員</td></tr>
+    <tr><td>2026/06/17</td><td>V4.0</td><td>更新網站第四版</td><td>依6月15日督導報告更新工程概要（進度、經費、累計進度檢核表新增6月月中）、施工概況及材料送審（新增實際送審日期、審查日期、審查結果及歸檔編號）。</td><td>網站管理員</td></tr>
+    <tr><td>2026/06/01</td><td>V3.0</td><td>更新網站第三版</td><td>依5月底督導報告同步更新工程概要、施工概況及材料送審；新增累計進度檢核表，材料送審補充預定送審日期。</td><td>網站管理員</td></tr>
+    <tr><td>2026/05/26</td><td>V2.0</td><td>更新網站第二版</td><td>補充工程概要、行事曆、品質管理（材料送審及不合格改善）、查驗表單工項；新增施工照片下載區；導覽列「監造工作流程」改為「工程概要」。</td><td>網站管理員</td></tr>
+    <tr><td>2026/05/25</td><td>V1.0</td><td>建立網站第一版</td><td>建立 8 個主選單與基本資料架構。</td><td>網站管理員</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">檔案命名建議</h2>
+<div class="notice">建議格式：文件名稱_工程類別_版本_日期，例如：屋頂防水工程查驗表_裝修工程_V1.0_20260702.pdf</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <strong>工程監造工作系統</strong><br>
+    本網站為工程監造內部工作資料平台第六版，實際表單、規範與作業程序仍應依契約、核定計畫、主管機關規定及最新法規辦理。
+  </div>
+</footer>
+<script>
+  // 優先從 localStorage 讀取主首頁設定的網址，避免使用者需要在多個頁面重複設定
+  let WEB_APP_URL = localStorage.getItem('WEB_APP_URL') || "";
+  if (!WEB_APP_URL || WEB_APP_URL.trim() === "" || WEB_APP_URL.includes("您的")) {
+    // 備用網址 (若直接開啟此分頁時使用)
+    WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDytzeH4Y8dfxxQXm6YUp2-SvSYjDmzH8jjX6JVB5ERjy9htKh0jqkmHp4zPVR_hE1/exec";
+  }
+  const PROJECT_CODE = "ASEC02";
+  const DEFAULT_FOLDER_ID = "1NMBA2gqfhrCs-UnJwIyfyfu7WU0T1zWn"; // 預設的 ASEC02 舊照片資料夾，用於備用
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    let folderId = DEFAULT_FOLDER_ID; // 預設為 ASEC02
+    
+    // 如果有設定網址，嘗試從試算表動態查詢最新的 folderId
+    if (WEB_APP_URL && WEB_APP_URL.trim() !== "" && !WEB_APP_URL.includes("您的")) {
+      try {
+        const response = await fetch(`${WEB_APP_URL}?action=getProjects`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result && result.success && Array.isArray(result.data)) {
+            const project = result.data.find(p => p.projectCode === PROJECT_CODE);
+            if (project && project.folderId && project.folderId.trim() !== "" && !project.folderId.includes("YOUR_GOOGLE_DRIVE")) {
+              folderId = project.folderId.trim();
+              console.log(`成功載入雲端資料夾 ID: ${folderId}`);
+            }
+          }
+        }
+      } catch (e) {
+        console.error("讀取試算表失敗，將載入預設資料夾。錯誤: ", e);
+      }
+    }
+    
+    // 設定 Iframe 與超連結，設定完成後再顯示，避免舊資料閃爍
+    const iframe = document.getElementById("photo-iframe");
+    const link = document.getElementById("photo-link");
+    const loading = document.getElementById("photo-loading");
+    const linkWrap = document.getElementById("photo-link-wrap");
+    
+    if (iframe) {
+      iframe.src = `https://drive.google.com/embeddedfolderview?id=${folderId}#grid`;
+      iframe.style.display = "block";
+    }
+    if (link) {
+      link.href = `https://drive.google.com/drive/folders/${folderId}?usp=sharing`;
+    }
+    if (loading) {
+      loading.style.display = "none";
+    }
+    if (linkWrap) {
+      linkWrap.style.display = "block";
+    }
+  });
+</script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

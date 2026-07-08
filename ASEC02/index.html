@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首頁｜工程監造工作系統</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .calendar-section { margin: 2rem 0; }
+    .calendar-table th { background: #2c5f2e; color: #fff; position:sticky; top:0; }
+    .calendar-table td { padding: 0.5rem 0.75rem; vertical-align: top; }
+    .event-tag { display:inline-block; padding:2px 8px; border-radius:12px; font-size:0.78rem; font-weight:600; margin-right:4px; white-space:nowrap; }
+    .tag-qc { background:#d4edda; color:#155724; }
+    .tag-progress { background:#cce5ff; color:#004085; }
+    .tag-inspect { background:#fff3cd; color:#856404; }
+    .tag-inspect-work { background:#ff8f00; color:#fff; border:2px solid #e65100; font-weight:700; padding:3px 10px; box-shadow:0 1px 3px rgba(230,81,0,0.25); }
+    .tag-schedule { background:#f8d7da; color:#721c24; }
+    .tag-selfcheck { background:#e2d9f3; color:#3d1f7c; }
+    .tag-mat-sample { background:#d1ecf1; color:#0c5460; }
+    .tag-mat-entry { background:#bee5eb; color:#0c5460; }
+    .tag-nonconform { background:#f5c6cb; color:#721c24; }
+    .tag-oversight { background:#ffe0b2; color:#5d4037; }
+    .tag-safety { background:#c8e6c9; color:#2e7d32; }
+    .tag-general { background:#e9ecef; color:#495057; }
+    .summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; margin:1rem 0; }
+    .summary-card { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:1.25rem; }
+    .summary-card h4 { margin:0 0 0.5rem; color:#2c5f2e; font-size:1rem; }
+    .progress-bar-wrap { background:#e9ecef; border-radius:4px; height:14px; margin:4px 0; }
+    .progress-bar-fill { background:#2c5f2e; height:100%; border-radius:4px; }
+    .kv-table td { padding:0.35rem 0.6rem; }
+    .kv-table td:first-child { font-weight:600; color:#444; width:120px; }
+    .calendar-wrap { max-height:600px; overflow-y:auto; border:1px solid #d4e4d4; border-radius:6px; }
+    .filter-bar { display:flex; gap:0.5rem; flex-wrap:wrap; margin:0.5rem 0 1rem; font-size:0.85rem; }
+    .filter-bar .fchip { background:#f4f8f4; border:1px solid #d4e4d4; padding:4px 10px; border-radius:12px; }
+    .filter-bar .fchip strong { color:#2c5f2e; }
+    .calendar-table th.date-col { min-width:110px; white-space:nowrap; }
+    .calendar-table th.cal-status-col, .calendar-table td.cal-status-col { min-width:80px; white-space:nowrap; text-align:center; }
+    .calendar-table .tag { white-space:nowrap; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="badge">第六版 V6.4｜更新日期：2026/07/04</div>
+    <h1>工程監造工作系統</h1>
+    <p class="subtitle">東勢林業文化園區禮堂整修為遊客中心暨設施改善工程 — 監造工作統一入口</p>
+  </div>
+</header>
+<nav>
+  <div class="nav-inner"><a href="../index.html">← 回所有案件</a>
+    <a href="index.html">首頁</a>
+    <a href="calendar.html">行事曆</a>
+    <a href="workflow.html">工程概要及進度</a>
+    <a href="quality.html">材料品質管理</a>
+    <a href="construction-quality.html">施工品質管理</a>
+    <a href="safety.html">施工安全衛生</a>
+    <a href="downloads.html">施工照片／更新紀錄</a>
+  </div>
+</nav>
+<main>
+
+<section class="hero">
+  <div class="card">
+    <h2>系統簡介</h2>
+    <p>本系統作為工程監造人員日常工作入口，彙整監造流程、材料品質管理、施工品質管理、施工安全衛生與下載更新紀錄，協助現場查驗、文件管理及經驗傳承。</p>
+    <div class="quick-links">
+      <a href="workflow.html">工程概要及進度</a>
+      <a href="quality.html">材料品質管理</a>
+      <a href="construction-quality.html">施工品質管理</a>
+      <a href="downloads.html">下載專區</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>最新公告</h3>
+    <table>
+      <tr><th>日期</th><th>公告事項</th></tr>
+      <tr><td>2026/07/02</td><td>更新網站第五版，依6月30日督導報告更新工程概要、施工概況、材料送審、材料抽驗總表、施工抽查及行事曆。</td></tr>
+      <tr><td>2026/06/17</td><td>更新網站第四版，依6月15日督導報告更新工程概要、施工概況及材料送審資料。</td></tr>
+      <tr><td>2026/06/01</td><td>更新網站第三版，依5月底督導報告更新工程概要、施工概況及材料送審資料。</td></tr>
+      <tr><td>2026/05/26</td><td>更新網站第二版，補充工程概要、行事曆及品質管理資料。</td></tr>
+      <tr><td>2026/05/25</td><td>建立工程監造工作系統第一版。</td></tr>
+    </table>
+  </div>
+</section>
+
+<h2 class="section-title">工程概要事項紀錄</h2>
+<div class="summary-grid">
+  <div class="summary-card">
+    <h4>工程進度摘要（統計至 115年6月30日）</h4>
+    <table class="kv-table">
+      <tr><td>工程名稱</td><td>東勢林業文化園區禮堂整修為遊客中心暨設施改善工程</td></tr>
+      <tr><td>契約金額</td><td>17,340 千元</td></tr>
+      <tr><td>開工日期</td><td>115年3月23日</td></tr>
+      <tr><td>預定完工</td><td>115年9月18日</td></tr>
+      <tr><td>預定進度</td><td>49.33%</td></tr>
+      <tr><td>實際進度</td><td>51.58%（超前 2.25 百分點）</td></tr>
+      <tr><td>累計工期</td><td>100 天</td></tr>
+      <tr><td>實際支出</td><td>6,299.531 千元</td></tr>
+    </table>
+  </div>
+  <div class="summary-card">
+    <h4>主要工項完成率</h4>
+    <p style="font-size:0.85rem; margin-bottom:8px;">消防工程 99.7%</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:99.7%"></div></div>
+    <p style="font-size:0.85rem; margin-bottom:8px;">展示櫥櫃工程 95.1%</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:95.1%"></div></div>
+    <p style="font-size:0.85rem; margin-bottom:8px;">假設及拆除工程 69.2%</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:69.2%"></div></div>
+    <p style="font-size:0.85rem; margin-bottom:8px;">建築改善工程 54.1%</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:54.1%"></div></div>
+    <p style="font-size:0.85rem; margin-bottom:8px;">室內裝修工程 32.2%</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:32.2%"></div></div>
+    <p style="font-size:0.85rem; margin-bottom:8px;">展示布置安裝工程 29.3%</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:29.3%"></div></div>
+  </div>
+</div>
+
+<h2 class="section-title">更新資訊</h2>
+<div class="notice">目前版本：V5.0。本系統資料統計至115年6月30日。行事曆事件已補齊自主檢查、材料進場、材料抽驗、督導紀錄、不符合事項等紀錄。</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <strong>工程監造工作系統</strong><br>
+    本網站為工程監造內部工作資料平台第六版，實際表單、規範與作業程序仍應依契約、核定計畫、主管機關規定及最新法規辦理。
+  </div>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
