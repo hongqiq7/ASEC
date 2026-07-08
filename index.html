@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工程監造案件入口網</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .project-title {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+      line-height: 1.4;
+      min-height: 3.5rem;
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .project-header .tag {
+      flex-shrink: 0;
+      white-space: nowrap;
+      margin-left: 12px;
+      align-self: center;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+    .info-table td {
+      padding: 6px 0;
+      border: 0;
+      font-size: 0.95rem;
+    }
+    .info-table td.label {
+      font-weight: 600;
+      color: var(--muted);
+      width: 90px;
+    }
+    .progress-section {
+      margin: 15px 0;
+    }
+    .progress-bar-wrap {
+      background: #e0eae7;
+      border-radius: 6px;
+      height: 16px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, var(--primary), #2a8a83);
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.5s ease-in-out;
+    }
+    .btn-enter {
+      display: block;
+      text-align: center;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .btn-enter:hover {
+      background: var(--primary-dark);
+    }
+    .project-grid {
+      margin-top: 2rem;
+      min-height: 200px;
+    }
+    .loading-spinner {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .spinner-icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 4px solid #e0eae7;
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="badge">監造平台門戶 (試算表同步版)</div>
+    <h1>工程監造工作系統</h1>
+    <p class="subtitle">所有工程案件統一入口網 — 請選擇欲檢視的監造案件</p>
+  </div>
+</header>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="active">入口首頁</a>
+  </div>
+</nav>
+<main>
+  <!-- 提醒設定公告（連線成功後將自動隱藏） -->
+  <div id="config-notice" class="notice" style="margin-bottom: 20px;">
+    💡 <strong>提示：</strong> 目前正載入本機預設的快取專案資料。欲啟用雲端 Google 試算表資料同步，請編輯此網頁 (<code>index.html</code>) 原始碼，將其內部的 <code>WEB_APP_URL</code> 變數設定為您部署後的 Google Apps Script 網頁應用程式網址。
+  </div>
+
+  <h2 class="section-title">所有監造案件列表</h2>
+  <div class="grid two project-grid" id="project-grid-container">
+    <!-- 載入中動畫 -->
+    <div class="loading-spinner">
+      <div class="spinner-icon"></div>
+      <div>正在連線至 Google 雲端試算表讀取案件清單...</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <strong>工程監造工作系統門戶</strong><br>
+    本網站為多案件入口首頁，管理及瀏覽所有子案件之監造資料。
+  </div>
+</footer>
+
+<script>
+  // ==========================================
+  // 【請在此設定您的 Google Apps Script 部署網址】
+  // 部署後將 Web App 的網址貼在此處，例如: "https://script.google.com/macros/s/AKfycb.../exec"
+  // ==========================================
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDytzeH4Y8dfxxQXm6YUp2-SvSYjDmzH8jjX6JVB5ERjy9htKh0jqkmHp4zPVR_hE1/exec";
+
+  // 自動儲存網址至 localStorage，讓所有子專案頁面能共享使用，免重複設定
+  if (WEB_APP_URL && WEB_APP_URL.trim() !== "" && !WEB_APP_URL.includes("您的")) {
+    localStorage.setItem('WEB_APP_URL', WEB_APP_URL.trim());
+  }
+
+  // 本機快取備用資料 (當無法連線至 Google 試算表或未設定網址時顯示)
+  const MOCK_DATA = [
+    {
+      projectCode: "ASEC02",
+      projectName: "東勢林業文化園區禮堂整修為遊客中心暨設施改善工程",
+      amount: 17340,
+      progress: "51.58%",
+      status: "施工中",
+      link: "ASEC02/index.html"
+    },
+    {
+      projectCode: "ASEC01",
+      projectName: "東勢林業文化園區戶外設施改善工程",
+      amount: 12500,
+      progress: "100.00%",
+      status: "已完工",
+      link: "ASEC01/index.html"
+    },
+    {
+      projectCode: "ASEC03",
+      projectName: "八仙山國家森林遊樂區步道設施改善工程",
+      amount: 8450,
+      progress: "75.20%",
+      status: "施工中",
+      link: "ASEC03/index.html"
+    },
+    {
+      projectCode: "ASEC04",
+      projectName: "大雪山國家森林遊樂區林道坍塌整治工程",
+      amount: 23100,
+      progress: "12.45%",
+      status: "施工中",
+      link: "ASEC04/index.html"
+    },
+    {
+      projectCode: "ASEC05",
+      projectName: "合歡山暗空公園觀星平台整修工程",
+      amount: 6200,
+      progress: "100.00%",
+      status: "已完工",
+      link: "ASEC05/index.html"
+    },
+    {
+      projectCode: "ASEC06",
+      projectName: "奧萬大國家森林遊樂區吊橋安全檢修工程",
+      amount: 4800,
+      progress: "90.00%",
+      status: "施工中",
+      link: "ASEC06/index.html"
+    },
+    {
+      projectCode: "ASEC07",
+      projectName: "溪頭自然教育園區森林探索步道維護工程",
+      amount: 9120,
+      progress: "43.10%",
+      status: "施工中",
+      link: "ASEC07/index.html"
+    },
+    {
+      projectCode: "ASEC08",
+      projectName: "阿里山國家森林遊樂區旅客服務中心外牆拉皮工程",
+      amount: 15400,
+      progress: "100.00%",
+      status: "已完工",
+      link: "ASEC08/index.html"
+    },
+    {
+      projectCode: "ASEC09",
+      projectName: "武陵國家森林遊樂區桃山瀑布步道鋪面改善工程",
+      amount: 11300,
+      progress: "28.50%",
+      status: "施工中",
+      link: "ASEC09/index.html"
+    },
+    {
+      projectCode: "ASEC10",
+      projectName: "太平山國家森林遊樂區蹦蹦車軌道維護工程",
+      amount: 19800,
+      progress: "5.00%",
+      status: "施工中",
+      link: "ASEC10/index.html"
+    }
+  ];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initProjects();
+  });
+
+  async function initProjects() {
+    const noticeEl = document.getElementById('config-notice');
+    
+    // 如果使用者沒有設定網址，直接顯示快取資料
+    if (!WEB_APP_URL || WEB_APP_URL.trim() === "") {
+      console.log("未設定 WEB_APP_URL，載入本機預設資料。");
+      renderCards(MOCK_DATA);
+      return;
+    }
+
+    try {
+      // 串接 API 讀取試算表資料
+      const response = await fetch(`${WEB_APP_URL}?action=getProjects`);
+      if (!response.ok) {
+        throw new Error(`HTTP 錯誤! 狀態碼: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      if (result && result.success && Array.isArray(result.data)) {
+        console.log("試算表資料載入成功！", result.data);
+        renderCards(result.data);
+        // 連線成功，隱藏提示設定的 banner
+        noticeEl.style.display = 'none';
+      } else {
+        throw new Error(result.message || "未知錯誤");
+      }
+    } catch (error) {
+      console.error("無法連線至 Google 試算表，改為載入本機快取資料。原因: ", error);
+      // 連線失敗時的備用處理，並將 banner 標註為警告
+      noticeEl.innerHTML = `⚠️ <strong>連線失敗：</strong> 無法從 Google 試算表載入資料（錯誤：${error.message}），目前已改為載入本機快取資料。請確認您的 GAS 部署網址是否正確，且發布設定為「所有人 (Anyone)」。`;
+      noticeEl.className = 'notice warn';
+      noticeEl.style.borderLeftColor = 'var(--danger)';
+      noticeEl.style.backgroundColor = '#fff5f5';
+      renderCards(MOCK_DATA);
+    }
+  }
+
+  function renderCards(projects) {
+    const container = document.getElementById('project-grid-container');
+    container.innerHTML = ''; // 清空載入中提示
+    
+    if (projects.length === 0) {
+      container.innerHTML = '<div class="card" style="grid-column: 1/-1; text-align: center; padding: 2rem;"><p>目前試算表中無任何專案資料。</p></div>';
+      return;
+    }
+    
+    projects.forEach(project => {
+      const isCompleted = project.status === "已完工";
+      const opacityStyle = isCompleted ? 'style="opacity: 0.8;"' : '';
+      const progressVal = parseFloat(project.progress) || 0;
+      const cleanAmount = parseFloat(project.amount) || 0;
+      
+      let btnHtml = '';
+      if (isCompleted) {
+        // 已完工的連結判斷
+        if (!project.link || project.link.trim() === "" || project.link === "#" || project.link === "ASEC01/index.html") {
+          btnHtml = `<a href="#" class="btn-enter" style="background: var(--muted); cursor: not-allowed;" onclick="alert('此案件已完工並封存。'); return false;">專案已封存</a>`;
+        } else {
+          btnHtml = `<a href="${project.link}" class="btn-enter" style="background: var(--ok);">瀏覽封存成果 →</a>`;
+        }
+      } else {
+        btnHtml = `<a href="${project.link || '#'}" class="btn-enter">進入專案系統 →</a>`;
+      }
+      
+      const cardHtml = `
+        <div class="card" ${opacityStyle}>
+          <div class="project-header">
+            <h3 class="project-title">${project.projectName}</h3>
+            <span class="tag ${isCompleted ? 'ok' : 'warn'}">${project.status}</span>
+          </div>
+          <table class="info-table">
+            <tr>
+              <td class="label">案件代號</td>
+              <td>${project.projectCode}</td>
+            </tr>
+            <tr>
+              <td class="label">契約金額</td>
+              <td>${cleanAmount.toLocaleString('zh-TW')} 千元</td>
+            </tr>
+            <tr>
+              <td class="label">目前進度</td>
+              <td>${project.progress}</td>
+            </tr>
+          </table>
+          <div class="progress-section">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+              <span>工程進度</span>
+              <strong>${project.progress}</strong>
+            </div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" style="width: ${progressVal}%; ${isCompleted ? 'background: var(--ok);' : ''}"></div>
+            </div>
+          </div>
+          ${btnHtml}
+        </div>
+      `;
+      container.innerHTML += cardHtml;
+    });
+  }
+</script>
+</body>
+</html>
