@@ -2,7 +2,7 @@ const CACHE_NAME = 'upload-pwa-cache-v1';
 const ASSETS_TO_CACHE = [
   'upload.html',
   'manifest.json',
-  'logo.jpg',
+  'logo-transparent.png',
   'assets/css/style.css',
   'assets/js/app.js'
 ];
