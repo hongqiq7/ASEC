@@ -240,15 +240,46 @@
   async function initProjects() {
     const noticeEl = document.getElementById('config-notice');
     
-    // 如果使用者沒有設定網址，直接顯示快取資料
-    if (!WEB_APP_URL || WEB_APP_URL.trim() === "") {
-      console.log("未設定 WEB_APP_URL，載入本機預設資料。");
+    // 1. 優先從 localStorage 讀取暫存的專案列表 (Stale-While-Revalidate)
+    const cachedData = localStorage.getItem('cachedProjectsData');
+    let hasLoadedFromCache = false;
+    
+    if (cachedData) {
+      try {
+        const cachedProjects = JSON.parse(cachedData);
+        if (Array.isArray(cachedProjects) && cachedProjects.length > 0) {
+          renderCards(cachedProjects);
+          hasLoadedFromCache = true;
+          console.log("已優先載入瀏覽器暫存之案件列表進行顯示。");
+          
+          // 如果有設定網址，在提示欄位顯示背景同步中
+          if (WEB_APP_URL && WEB_APP_URL.trim() !== "" && !WEB_APP_URL.includes("您的")) {
+            noticeEl.innerHTML = `🔄 <strong>背景同步中：</strong> 正在為您連線至 Google 試算表以同步最新進度...`;
+            noticeEl.className = 'notice';
+            noticeEl.style.display = 'block';
+          }
+        }
+      } catch (e) {
+        console.warn("解析快取專案資料失敗，將使用預設資料。", e);
+      }
+    }
+    
+    // 2. 如果沒有快取資料，直接以本機預設資料 (MOCK_DATA) 進行秒開渲染
+    if (!hasLoadedFromCache) {
       renderCards(MOCK_DATA);
+      console.log("未偵測到快取，已載入預設本機案件列表。");
+    }
+    
+    // 3. 如果使用者沒有設定網址，直接結束 (不進行背景同步)
+    if (!WEB_APP_URL || WEB_APP_URL.trim() === "" || WEB_APP_URL.includes("您的")) {
+      noticeEl.innerHTML = `💡 <strong>提示：</strong> 目前正載入本機預設的快取專案資料。欲啟用雲端 Google 試算表資料同步，請編輯此網頁 (<code>index.html</code>) 原始碼，將其內部的 <code>WEB_APP_URL</code> 變數設定為您部署後的 Google Apps Script 網頁應用程式網址。`;
+      noticeEl.className = 'notice';
+      noticeEl.style.display = 'block';
       return;
     }
 
+    // 4. 背景非同步向 Google Apps Script 發送請求獲取最新資料
     try {
-      // 串接 API 讀取試算表資料
       const response = await fetch(`${WEB_APP_URL}?action=getProjects`);
       if (!response.ok) {
         throw new Error(`HTTP 錯誤! 狀態碼: ${response.status}`);
@@ -256,21 +287,29 @@
       
       const result = await response.json();
       if (result && result.success && Array.isArray(result.data)) {
-        console.log("試算表資料載入成功！", result.data);
+        console.log("試算表最新資料載入成功！正在更新版面與快取。");
+        // 更新快取與同步時間
+        localStorage.setItem('cachedProjectsData', JSON.stringify(result.data));
+        localStorage.setItem('lastSyncTime', new Date().toLocaleString());
+        
+        // 重新渲染最新進度
         renderCards(result.data);
-        // 連線成功，隱藏提示設定的 banner
+        
+        // 同步成功，隱藏提示公告
         noticeEl.style.display = 'none';
       } else {
         throw new Error(result.message || "未知錯誤");
       }
     } catch (error) {
-      console.error("無法連線至 Google 試算表，改為載入本機快取資料。原因: ", error);
-      // 連線失敗時的備用處理，並將 banner 標註為警告
-      noticeEl.innerHTML = `⚠️ <strong>連線失敗：</strong> 無法從 Google 試算表載入資料（錯誤：${error.message}），目前已改為載入本機快取資料。請確認您的 GAS 部署網址是否正確，且發布設定為「所有人 (Anyone)」。`;
+      console.error("無法同步最新試算表資料。原因: ", error);
+      const lastSync = localStorage.getItem('lastSyncTime') || "無記錄";
+      
+      // 更新提示欄位為警告，但不清空已經渲染好的暫存卡片
+      noticeEl.innerHTML = `⚠️ <strong>無法同步最新資料：</strong> 連線至 Google 試算表失敗（${error.message}）。目前為您顯示暫存於此瀏覽器的最近資料（上次同步時間：${lastSync}）。`;
       noticeEl.className = 'notice warn';
       noticeEl.style.borderLeftColor = 'var(--danger)';
       noticeEl.style.backgroundColor = '#fff5f5';
-      renderCards(MOCK_DATA);
+      noticeEl.style.display = 'block';
     }
   }
 
