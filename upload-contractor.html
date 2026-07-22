@@ -488,22 +488,28 @@
     
     hideMsg();
     
-    const timestamp = new Date().toISOString().replace(/[-:T]/g, "").split(".")[0];
     const remarkVal = globalRemarkInput.value.trim();
     const stageVal = selectedStageInput.value || "未命名";
     
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       try {
-        const rand = Math.floor(Math.random() * 1000);
         let targetFileName = "";
         
-        // Define backup filename format
+        // Define backup filename format without timestamp and random suffix
         if (remarkVal) {
           const sanitizedRemark = remarkVal.replace(/[\\\/:*?\"<>|]/g, "_").trim();
-          targetFileName = `${sanitizedRemark}_${timestamp}_${rand}.jpg`;
+          if (files.length > 1) {
+            targetFileName = `${sanitizedRemark}_${i + 1}.jpg`;
+          } else {
+            targetFileName = `${sanitizedRemark}.jpg`;
+          }
         } else {
-          targetFileName = `photo_${stageVal}_${timestamp}_${rand}.jpg`;
+          if (files.length > 1) {
+            targetFileName = `photo_${stageVal}_${i + 1}.jpg`;
+          } else {
+            targetFileName = `photo_${stageVal}.jpg`;
+          }
         }
 
         const rawBase64 = await readFileAsDataURL(file);
@@ -701,20 +707,26 @@
     btnSubmit.disabled = true;
     hideMsg();
     
-    const timestamp = new Date().toISOString().replace(/[-:T]/g, "").split(".")[0];
     const remarkVal = globalRemarkInput.value.trim();
     
     // Add all selected files to IndexedDB queue first
     for (let i = 0; i < selectedFiles.length; i++) {
       const fileObj = selectedFiles[i];
-      const rand = Math.floor(Math.random() * 1000);
       
       let finalFileName = "";
       if (remarkVal) {
         const sanitizedRemark = remarkVal.replace(/[\\\/:*?\"<>|]/g, "_").trim();
-        finalFileName = `${sanitizedRemark}_${timestamp}_${rand}.jpg`;
+        if (selectedFiles.length > 1) {
+          finalFileName = `${sanitizedRemark}_${i + 1}.jpg`;
+        } else {
+          finalFileName = `${sanitizedRemark}.jpg`;
+        }
       } else {
-        finalFileName = `photo_${selectedStage}_${timestamp}_${rand}.jpg`;
+        if (selectedFiles.length > 1) {
+          finalFileName = `photo_${selectedStage}_${i + 1}.jpg`;
+        } else {
+          finalFileName = `photo_${selectedStage}.jpg`;
+        }
       }
       
       const item = {
