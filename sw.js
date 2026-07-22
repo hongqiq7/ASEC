@@ -1,6 +1,7 @@
 const CACHE_NAME = 'upload-pwa-cache-v1';
 const ASSETS_TO_CACHE = [
   'upload.html',
+  'upload-contractor.html',
   'manifest.json',
   'logo-transparent.png',
   'assets/css/style.css',

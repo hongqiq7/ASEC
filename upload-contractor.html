@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2c5f2e">
+  <title>廠商施工照片上傳系統 (離線優先版)</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    :root {
+      --primary: #1f5f5b;
+      --primary-dark: #164744;
+      --accent: #f2b705;
+      --bg: #f5f7f6;
+      --card: #ffffff;
+      --text: #263238;
+      --line: #d9e2df;
+      --ok: #2e7d32;
+      --danger: #b00020;
+      --warning: #856404;
+    }
+    body {
+      margin: 0;
+      padding: 15px;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(31,95,91,.06);
+      box-sizing: border-box;
+    }
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+      text-align: center;
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+    
+    /* Stage selection buttons */
+    .stage-btn-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .btn-stage {
+      background-color: #fff;
+      color: var(--primary-dark);
+      border: 1px solid var(--line);
+      padding: 12px 6px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .btn-stage.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 10px rgba(31,95,91,.2);
+    }
+    .btn-stage:hover:not(.active) {
+      background-color: #e6f1ef;
+    }
+
+    /* Queue status banner */
+    .queue-banner {
+      background-color: #e0f2f1;
+      border: 1px solid #b2dfdb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 20px;
+      display: none;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #004d40;
+    }
+    .queue-banner button {
+      background: #00796b;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .queue-banner button:hover {
+      background: #004d40;
+    }
+
+    /* Photo list preview */
+    .preview-container {
+      margin: 15px 0;
+      display: none;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafafa;
+    }
+    .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .btn-delete {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      line-height: 1;
+    }
+    
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-submit:hover {
+      background-color: var(--primary-dark);
+    }
+    .btn-submit:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    /* Feedback message */
+    .message {
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 15px;
+      display: none;
+      text-align: center;
+    }
+    .message.success {
+      background-color: #e8f5e9;
+      color: var(--ok);
+      border: 1px solid #c8e6c9;
+    }
+    .message.warning {
+      background-color: #fff3cd;
+      color: var(--warning);
+      border: 1px solid #ffeeba;
+    }
+    .message.error {
+      background-color: #ffebee;
+      color: var(--danger);
+      border: 1px solid #ffcdd2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>廠商施工照片上傳系統</h2>
+  
+  <!-- Queue Status Banner -->
+  <div class="queue-banner" id="queueStatusSection">
+    偵測到本機有 <span id="queueCount">0</span> 張照片待補送
+    <button type="button" onclick="triggerManualSync()">立即補送</button>
+  </div>
+  
+  <form id="uploadForm">
+    <!-- Project selection -->
+    <div class="form-group">
+      <label for="projectCode">1. 選擇工程案件</label>
+      <select id="projectCode" required>
+        <option value="" disabled selected>載入中...</option>
+      </select>
+    </div>
+    
+    <!-- Stage selection -->
+    <div class="form-group">
+      <label>2. 選擇施工階段</label>
+      <div class="stage-btn-group">
+        <button type="button" class="btn-stage" data-stage="施工前">施工前</button>
+        <button type="button" class="btn-stage" data-stage="施工中">施工中</button>
+        <button type="button" class="btn-stage" data-stage="施工後">施工後</button>
+      </div>
+      <input type="hidden" id="selectedStage" required>
+    </div>
+
+    <!-- Global remark input -->
+    <div class="form-group">
+      <label for="globalRemark">3. 輸入照片備註說明 (此說明將作為相片檔案名稱)</label>
+      <input type="text" id="globalRemark" placeholder="例如：0.7K 新設砌石擋土牆" style="width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 16px; box-sizing: border-box; background-color: #fff;">
+    </div>
+    
+    <!-- Camera/Photo picker -->
+    <div class="form-group">
+      <label>4. 現場拍照 / 選擇照片 (拍照將自動下載備份至手機)</label>
+      <div class="select-btn-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button type="button" id="btnCamera" style="background-color: var(--bg); color: var(--primary-dark); border: 1px solid var(--line); padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          現場拍照
+        </button>
+        <button type="button" id="btnAlbum" style="background-color: var(--bg); color: var(--primary-dark); border: 1px solid var(--line); padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          從相簿多選
+        </button>
+      </div>
+      <!-- Hidden file inputs -->
+      <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;">
+      <input type="file" id="albumInput" accept="image/*" multiple style="display: none;">
+    </div>
+    
+    <!-- Preview container -->
+    <div class="preview-container" id="previewContainer">
+      <label id="previewLabel">照片預覽 (0 張)：</label>
+      <div class="preview-grid" id="previewGrid">
+        <!-- Thumbnails rendered here -->
+      </div>
+    </div>
+    
+    <!-- Submit button -->
+    <button type="submit" class="btn-submit" id="btnSubmit" disabled>
+      開始上傳照片
+    </button>
+  </form>
+  
+  <!-- Status Message -->
+  <div id="statusMsg" class="message"></div>
+</div>
+
+<script>
+  // PWA Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker Registered!', reg))
+        .catch(err => console.error('Service Worker Registration Failed!', err));
+    });
+  }
+
+  // Configuration
+  let WEB_APP_URL = localStorage.getItem('WEB_APP_URL') || "";
+  if (!WEB_APP_URL || WEB_APP_URL.trim() === "" || WEB_APP_URL.includes("您的")) {
+    WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDytzeH4Y8dfxxQXm6YUp2-SvSYjDmzH8jjX6JVB5ERjy9htKh0jqkmHp4zPVR_hE1/exec";
+  }
+  
+  const FALLBACK_PROJECTS = [
+    { code: "ASEC02", name: "東勢林業文化園區禮堂整修為遊客中心暨設施改善工程" },
+    { code: "ASEC01", name: "東勢林業文化園區戶外設施改善工程" },
+    { code: "ASEC03", name: "東勢林業文化園區雙生木棧道修繕工程" }
+  ];
+
+  // DOM Elements
+  const btnCamera = document.getElementById('btnCamera');
+  const btnAlbum = document.getElementById('btnAlbum');
+  const cameraInput = document.getElementById('cameraInput');
+  const albumInput = document.getElementById('albumInput');
+  const previewContainer = document.getElementById('previewContainer');
+  const previewGrid = document.getElementById('previewGrid');
+  const previewLabel = document.getElementById('previewLabel');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const uploadForm = document.getElementById('uploadForm');
+  const statusMsg = document.getElementById('statusMsg');
+  const queueStatusSection = document.getElementById('queueStatusSection');
+  const queueCountEl = document.getElementById('queueCount');
+  const selectedStageInput = document.getElementById('selectedStage');
+  const stageButtons = document.querySelectorAll('.btn-stage');
+  const globalRemarkInput = document.getElementById('globalRemark');
+
+  let selectedFiles = []; // Array of { id, base64 }
+
+  // IndexedDB Functions
+  const DB_NAME = 'photoQueueDB';
+  const STORE_NAME = 'pendingPhotos';
+
+  function openDB() {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open(DB_NAME, 1);
+      request.onupgradeneeded = () => {
+        request.result.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  }
+
+  async function addToQueue(item) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const transaction = db.transaction(STORE_NAME, 'readwrite');
+      const store = transaction.objectStore(STORE_NAME);
+      const req = store.put(item);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function getQueue() {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const transaction = db.transaction(STORE_NAME, 'readonly');
+      const store = transaction.objectStore(STORE_NAME);
+      const req = store.getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => resolve([]);
+    });
+  }
+
+  async function removeFromQueue(id) {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const transaction = db.transaction(STORE_NAME, 'readwrite');
+      const store = transaction.objectStore(STORE_NAME);
+      const req = store.delete(id);
+      req.onsuccess = () => resolve();
+      req.onerror = () => resolve();
+    });
+  }
+
+  // Load Projects from Sheets
+  async function loadProjects() {
+    const select = document.getElementById('projectCode');
+    let projects = [];
+    
+    if (WEB_APP_URL) {
+      try {
+        const response = await fetch(`${WEB_APP_URL}?action=getProjects&type=contractor`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result && result.success && Array.isArray(result.data)) {
+            projects = result.data;
+            localStorage.setItem('cachedContractorProjects', JSON.stringify(projects));
+          }
+        }
+      } catch (e) {
+        console.warn("無法取得線上廠商專案列表，將使用快取資料或備用名單。", e);
+      }
+    }
+    
+    if (projects.length === 0) {
+      const cached = localStorage.getItem('cachedContractorProjects');
+      if (cached) {
+        try {
+          projects = JSON.parse(cached);
+        } catch (e) {}
+      }
+    }
+    
+    if (projects.length === 0) {
+      projects = FALLBACK_PROJECTS;
+    }
+    
+    select.innerHTML = '<option value="" disabled selected>-- 請選擇案件 --</option>';
+    projects.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.projectCode || p.code;
+      opt.textContent = `${p.projectCode || p.code} ${p.projectName || p.name}`;
+      select.appendChild(opt);
+    });
+  }
+
+  // Canvas Image Compression
+  function compressImage(base64Str, maxWidth = 1600, maxHeight = 1600, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = base64Str;
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+        
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+        resolve(compressedBase64);
+      };
+      img.onerror = (err) => reject(err);
+    });
+  }
+
+  // FileReader Helper
+  function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = evt => resolve(evt.target.result);
+      reader.onerror = err => reject(err);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Stage Button Selection Handler
+  stageButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      stageButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedStageInput.value = btn.getAttribute('data-stage');
+      checkSubmitState();
+    });
+  });
+
+  // Button triggers for file inputs
+  btnCamera.addEventListener('click', () => cameraInput.click());
+  btnAlbum.addEventListener('click', () => albumInput.click());
+
+  cameraInput.addEventListener('change', (e) => handleFileSelect(e, true));
+  albumInput.addEventListener('change', (e) => handleFileSelect(e, false));
+
+  async function handleFileSelect(e, isCamera) {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+    
+    hideMsg();
+    
+    const timestamp = new Date().toISOString().replace(/[-:T]/g, "").split(".")[0];
+    const remarkVal = globalRemarkInput.value.trim();
+    const stageVal = selectedStageInput.value || "未命名";
+    
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      try {
+        const rand = Math.floor(Math.random() * 1000);
+        let targetFileName = "";
+        
+        // Define backup filename format
+        if (remarkVal) {
+          const sanitizedRemark = remarkVal.replace(/[\\\/:*?\"<>|]/g, "_").trim();
+          targetFileName = `${sanitizedRemark}_${timestamp}_${rand}.jpg`;
+        } else {
+          targetFileName = `photo_${stageVal}_${timestamp}_${rand}.jpg`;
+        }
+
+        const rawBase64 = await readFileAsDataURL(file);
+        const compressedBase64 = await compressImage(rawBase64, 1600, 1600, 0.8);
+        
+        // If captured from camera, save to phone's downloads folder automatically (works offline)
+        if (isCamera) {
+          try {
+            const blobUrl = URL.createObjectURL(file);
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = targetFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+          } catch (downloadErr) {
+            console.error("手機本地備份失敗：", downloadErr);
+          }
+        }
+        
+        selectedFiles.push({
+          id: Date.now() + '-' + i + '-' + Math.random(),
+          base64: compressedBase64
+        });
+      } catch (err) {
+        console.error("處理圖片失敗：", err);
+      }
+    }
+    
+    cameraInput.value = "";
+    albumInput.value = "";
+    renderPreviews();
+  }
+
+  function renderPreviews() {
+    previewGrid.innerHTML = "";
+    previewLabel.innerText = `照片預覽 (${selectedFiles.length} 張)：`;
+    
+    if (selectedFiles.length > 0) {
+      previewContainer.style.display = "block";
+    } else {
+      previewContainer.style.display = "none";
+    }
+    checkSubmitState();
+    
+    selectedFiles.forEach((fileObj) => {
+      const thumb = document.createElement("div");
+      thumb.className = "thumb-wrap";
+      
+      thumb.innerHTML = `
+        <img src="${fileObj.base64}">
+        <button type="button" class="btn-delete">×</button>
+      `;
+      
+      const deleteBtn = thumb.querySelector('.btn-delete');
+      deleteBtn.addEventListener('click', () => {
+        removeSelectedFile(fileObj.id);
+      });
+      
+      previewGrid.appendChild(thumb);
+    });
+  }
+
+  function removeSelectedFile(id) {
+    selectedFiles = selectedFiles.filter(file => file.id !== id);
+    renderPreviews();
+  }
+
+  function clearPreview() {
+    selectedFiles = [];
+    renderPreviews();
+  }
+
+  function checkSubmitState() {
+    const hasProject = document.getElementById('projectCode').value !== "";
+    const hasStage = selectedStageInput.value !== "";
+    const hasFiles = selectedFiles.length > 0;
+    
+    btnSubmit.disabled = !(hasProject && hasStage && hasFiles);
+  }
+
+  document.getElementById('projectCode').addEventListener('change', checkSubmitState);
+
+  // Display Messages
+  function showMsg(text, type) {
+    statusMsg.innerText = text;
+    statusMsg.className = 'message ' + type;
+    statusMsg.style.display = 'block';
+  }
+
+  function hideMsg() {
+    statusMsg.style.display = 'none';
+  }
+
+  // Send photo helper
+  function sendPhoto(item) {
+    return fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(item)
+    }).then(async response => {
+      if (response.ok) {
+        const text = await response.text();
+        try {
+          return JSON.parse(text);
+        } catch (e) {
+          return { success: true, message: "上傳成功！" };
+        }
+      } else {
+        throw new Error(`HTTP 錯誤: ${response.status}`);
+      }
+    });
+  }
+
+  // Background Sync Queue
+  let isFlushing = false;
+  async function flushQueue() {
+    if (isFlushing) return;
+    isFlushing = true;
+    
+    const pendingItems = await getQueue();
+    if (pendingItems.length === 0) {
+      isFlushing = false;
+      updateQueueBadge(0);
+      return;
+    }
+    
+    let successCount = 0;
+    for (let item of pendingItems) {
+      try {
+        const res = await sendPhoto(item);
+        if (res && res.success) {
+          await removeFromQueue(item.id);
+          successCount++;
+        } else {
+          console.warn(`補送照片失敗：${res.message}`);
+        }
+      } catch (e) {
+        console.warn("目前沒有網路，保留在暫存佇列中：", e);
+        break; // Stop loop if network is offline
+      }
+    }
+    
+    const remaining = await getQueue();
+    updateQueueBadge(remaining.length);
+    
+    if (successCount > 0) {
+      if (remaining.length === 0) {
+        showMsg(`暫存的 ${successCount} 張照片已成功補送上傳！`, 'success');
+      } else {
+        showMsg(`已補送上傳 ${successCount} 張照片，尚有 ${remaining.length} 張等待訊號。`, 'warning');
+      }
+    }
+    
+    isFlushing = false;
+  }
+
+  function updateQueueBadge(count) {
+    if (count > 0) {
+      queueCountEl.innerText = count;
+      queueStatusSection.style.display = 'block';
+    } else {
+      queueStatusSection.style.display = 'none';
+    }
+  }
+
+  window.triggerManualSync = function() {
+    flushQueue();
+  };
+
+  // Form Submit Handler
+  uploadForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const projectCode = document.getElementById('projectCode').value;
+    const selectedStage = selectedStageInput.value;
+    
+    if (!projectCode) {
+      showMsg("請先選擇工程案件！", 'error');
+      return;
+    }
+    if (!selectedStage) {
+      showMsg("請先選擇施工階段！", 'error');
+      return;
+    }
+    if (selectedFiles.length === 0) {
+      showMsg("請先拍照或選擇照片！", 'error');
+      return;
+    }
+    
+    btnSubmit.disabled = true;
+    hideMsg();
+    
+    const timestamp = new Date().toISOString().replace(/[-:T]/g, "").split(".")[0];
+    const remarkVal = globalRemarkInput.value.trim();
+    
+    // Add all selected files to IndexedDB queue first
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const fileObj = selectedFiles[i];
+      const rand = Math.floor(Math.random() * 1000);
+      
+      let finalFileName = "";
+      if (remarkVal) {
+        const sanitizedRemark = remarkVal.replace(/[\\\/:*?\"<>|]/g, "_").trim();
+        finalFileName = `${sanitizedRemark}_${timestamp}_${rand}.jpg`;
+      } else {
+        finalFileName = `photo_${selectedStage}_${timestamp}_${rand}.jpg`;
+      }
+      
+      const item = {
+        id: Date.now() + '-' + i + '-' + Math.random(),
+        caseCode: projectCode,
+        stage: selectedStage,
+        isContractor: true,
+        base64Data: fileObj.base64,
+        fileName: finalFileName,
+        mimeType: 'image/jpeg'
+      };
+      await addToQueue(item);
+    }
+    
+    const pendingItems = await getQueue();
+    updateQueueBadge(pendingItems.length);
+    clearPreview();
+    
+    // Reset selected stage buttons and remark
+    stageButtons.forEach(b => b.classList.remove('active'));
+    selectedStageInput.value = "";
+    globalRemarkInput.value = "";
+    
+    // Attempt to flush queue immediately
+    showMsg("照片已加入排程，正在嘗試發送上傳...", 'warning');
+    
+    try {
+      await flushQueue();
+      const remaining = await getQueue();
+      if (remaining.length > 0) {
+        showMsg(`目前網路訊號微弱，有 ${remaining.length} 張照片已安全暫存在手機，當您走到有收訊的地方時會自動送出！`, 'warning');
+      }
+    } catch(err) {
+      showMsg("目前處於斷網狀態，照片已安全暫存在您的手機！恢復網路後將會自動補送。", 'warning');
+    }
+  });
+
+  // Page Load Init
+  window.addEventListener('load', async () => {
+    await loadProjects();
+    const pending = await getQueue();
+    updateQueueBadge(pending.length);
+    flushQueue();
+  });
+
+  // Online connection restored trigger
+  window.addEventListener('online', () => {
+    console.log("網路已恢復，自動補送暫存照片...");
+    flushQueue();
+  });
+
+  // Auto retry interval every 30 seconds
+  setInterval(flushQueue, 30000);
+</script>
+
+</body>
+</html>
